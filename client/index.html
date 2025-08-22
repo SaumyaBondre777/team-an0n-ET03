@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=
     , initial-scale=1.0">
-    <title>AI Chat Interface</title>
+    <title>AN0N CRACKER</title>
     <style>
         :root {
             --primary: #0078d4;
@@ -18,9 +18,8 @@
             background: var(--bg);
             margin: 0;
             min-height: 100vh;
-            transition: background 0.2s;
-            /* Remove default scrollbars for cleaner look */
             overflow: hidden;
+            text-align: center;
         }
         .ai-container {
             position: fixed;
@@ -37,6 +36,9 @@
             color: var(--text);
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
         }
         .ai-header {
             display: flex;
@@ -44,11 +46,13 @@
             align-items: center;
             padding: 32px 32px 0 32px;
             margin-bottom: 0;
+            text-align: center;
         }
         .ai-title {
             font-size: 1.7em;
             font-weight: 600;
             letter-spacing: 0.5px;
+            text-align: center;
         }
         .ai-output {
             flex: 1;
@@ -64,6 +68,7 @@
             border: 1px solid #e0e0e0;
         }
         .ai-input-row {
+
             position: fixed;
             left: 50%;
             bottom: 0;
@@ -75,8 +80,8 @@
             justify-content: center;
             align-items: center;
             padding: 18px 0;
-            box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
-            border-top: 1px solid #e0e0e0;
+            background-color: transparent;
+            text-align: center;
         }
         .ai-input-wrapper {
             position: relative;
@@ -84,15 +89,17 @@
             max-width: 500px;
             display: flex;
             align-items: center;
+            text-align: center;
         }
         .ai-input {
             width: 100%;
             padding: 10px 44px 10px 10px;
-            border-radius: 6px;
+            border-radius: 250px;
             border: 1px solid #bbb;
             font-size: 1em;
             background: var(--bg);
             color: var(--text);
+            border-radius: 250px;
             transition: background 0.2s, color 0.2s;
         }
         .ai-input:focus {
