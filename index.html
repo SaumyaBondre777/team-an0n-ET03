@@ -1,177 +1,877 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
-
-    <title>AN0N CRACKER</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-[#131712] dark group/design-root overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2d372a] px-10 py-3">
-          <div class="flex items-center gap-4 text-white">
-            <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
-              </svg>
-            </div>
-            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AN0N CRACKER</h2>
-          </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#2d372a] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
-            >
-              <div class="text-white" data-icon="List" data-size="20px" data-weight="regular">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"
-                  ></path>
-                </svg>
-              </div>
-            </button>
-            <div
-              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA8WS-xDFkLBpDBZ47tHbERKTBvMG2H9LxKPJUfmYmdJ1TySif2kcAr--ashg5Q1QQSuaEct62CUhFRIaXNsjfB3S9-Jt2Z7bzGKFUJG0or_BeH8kw0YNFqVD2m-sR2nV9AMh4DtzyBXDW7H1pEoq4991fuH5GGSQLWzp5R89gy2yUrorRDQZm3dZ0XpKs5BLw48ijStdeXDKlhqqG7DkuKyUUKsprHmbwX5fte4Y8aQs_IghFCqDYzjNzksQBEgBrfJUAZuV06rxI");'
-            ></div>
-          </div>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[700px] flex-1 w-full">
-            <h2 class="text-white tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">Exam AI Chatbot</h2>
-            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
-              Recommended questions to get started:
-            </p>
-            <div class="flex flex-wrap justify-center gap-3 pb-6" id="suggestions">
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                What are the most important topics for my math exam?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                Can you give me tips for time management during exams?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                How do I prepare for multiple choice questions?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                What are some common mistakes to avoid in science exams?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                Can you help me create a study plan?
-              </button>
-            </div>
-            <!-- Chat bubble area -->
-            <div id="chat-area" class="flex flex-col gap-3 px-2 py-4 overflow-y-auto flex-1 min-h-[300px] max-h-[400px] bg-[#181d16] rounded-lg mb-4 border border-[#2d372a]">
-              <!-- Chat bubbles will be appended here -->
-            </div>
-            <!-- Move input bar to bottom -->
-          </div>
-        </div>
-        <!-- Input bar fixed at bottom -->
-        <div class="w-full flex justify-center bg-[#131712] pb-6 pt-2 px-4 fixed bottom-0 left-0 z-10">
-          <div class="flex w-full max-w-[700px] flex-wrap items-end gap-4 justify-center mx-auto">
-            <label class="flex flex-col min-w-40 flex-1 relative">
-              <input
-                id="prompt-input"
-                placeholder="Type your question here..."
-                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#2d372a] focus:border-none h-14 placeholder:text-[#a5b6a0] p-4 text-base font-normal leading-normal pr-12"
-                value=""
-                autocomplete="off"
-              />
-              <button
-                type="button"
-                id="send-btn"
-                class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center bg-[#54d22d] hover:bg-[#6be942] transition rounded-full w-9 h-9"
-                aria-label="Send"
-              >
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style="display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 3V19M11 3L5 9M11 3L17 9" stroke="#131712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamPrep AI - Personalized Study Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
-      // Chat memory
-      let chatHistory = [];
-
-      // Helper to render chat bubbles
-      function renderChat() {
-        const chatArea = document.getElementById('chat-area');
-        chatArea.innerHTML = '';
-        chatHistory.forEach(msg => {
-          const bubble = document.createElement('div');
-          bubble.className =
-            (msg.role === 'user'
-              ? 'self-end bg-[#54d22d] text-[#131712] rounded-br-none'
-              : 'self-start bg-[#232a1e] text-white rounded-bl-none') +
-            ' max-w-[80%] px-4 py-2 rounded-2xl shadow text-base whitespace-pre-line';
-          bubble.textContent = msg.content;
-          chatArea.appendChild(bubble);
-        });
-        chatArea.scrollTop = chatArea.scrollHeight;
-      }
-
-      // Send message to backend and update chat
-      async function sendMessage(question) {
-        chatHistory.push({ role: 'user', content: question });
-        renderChat();
-        // Show loading bubble
-        chatHistory.push({ role: 'assistant', content: '...' });
-        renderChat();
-        try {
-          // Send chatHistory to backend
-          const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ history: chatHistory.filter(m => m.role !== 'assistant' || m.content !== '...') })
-          });
-          const data = await response.json();
-          // Replace loading bubble with actual response
-          chatHistory.pop();
-          chatHistory.push({ role: 'assistant', content: data.answer || '[No response]' });
-          renderChat();
-        } catch (e) {
-          chatHistory.pop();
-          chatHistory.push({ role: 'assistant', content: '[Error getting response]' });
-          renderChat();
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#6366f1',
+                        accent: '#8b5cf6',
+                        dark: {
+                            900: '#1f2937',
+                            800: '#374151',
+                            700: '#4b5563'
+                        }
+                    }
+                }
+            }
         }
-      }
-
-      // Send button logic
-      document.getElementById('send-btn').onclick = function() {
-        const input = document.getElementById('prompt-input');
-        const question = input.value.trim();
-        if (question) {
-          sendMessage(question);
-          input.value = '';
-        }
-      };
-
-      // Fill input when clicking recommended questions
-      document.getElementById('suggestions').addEventListener('click', function(e) {
-        if (e.target.tagName === 'BUTTON') {
-          document.getElementById('prompt-input').value = e.target.textContent;
-        }
-      });
-
-      // Enter key submits
-      document.getElementById('prompt-input').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          document.getElementById('send-btn').click();
-        }
-      });
-
-      // Initial render
-      renderChat();
     </script>
-  </body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .message-user {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+        }
+        
+        .message-ai {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px 18px 18px 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8fafc;
+            border-radius: 18px 18px 18px 4px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #6b7280;
+            margin: 0 2px;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chat-container {
+            height: calc(100vh - 140px);
+        }
+        
+        .study-plan-form {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px dashed #4f46e5;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .study-plan-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px 0;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .subject-sidebar {
+                position: fixed;
+                left: -100%;
+                transition: left 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .subject-sidebar.active {
+                left: 0;
+            }
+        }
+        
+        .api-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .api-connected {
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+        }
+        
+        .api-error {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+        
+        .code-block {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+        
+        .form-input {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 10px;
+            width: 100%;
+            margin: 5px 0;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- API Status Indicator -->
+    <div id="apiStatus" class="api-status api-connected hidden">
+        <i class="fas fa-wifi mr-1"></i> GROQ Connected
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-semibold text-gray-900">AN0N Cracker AI</span>
+                        
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Sidebar -->
+            <div class="subject-sidebar sidebar lg:w-80 bg-white rounded-lg shadow-sm border border-gray-200 p-6 lg:sticky lg:top-24 lg:h-fit">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-gray-900">Study Subjects</h2>
+                    <button class="p-1 text-gray-400 hover:text-gray-600 lg:hidden" onclick="toggleSidebar()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-3">
+                    <div class="subject-card bg-gray-50 p-4 rounded-lg border border-gray-200 cursor-pointer hover:bg-blue-50 transition-all duration-200" data-subject="Mathematics">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-medium text-gray-900">Mathematics</h3>
+                                <p class="text-sm text-gray-500">Algebra, Calculus, Statistics</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card bg-gray-50 p-4 rounded-lg border border-gray-200 cursor-pointer hover:bg-green-50 transition-all duration-200" data-subject="Science">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-medium text-gray-900">Science</h3>
+                                <p class="text-sm text-gray-500">Physics, Chemistry, Biology</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card bg-gray-50 p-4 rounded-lg border border-gray-200 cursor-pointer hover:bg-purple-50 transition-all duration-200" data-subject="Literature">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-medium text-gray-900">Literature</h3>
+                                <p class="text-sm text-gray-500">English, Poetry, Prose</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card bg-gray-50 p-4 rounded-lg border border-gray-200 cursor-pointer hover:bg-red-50 transition-all duration-200" data-subject="History">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-medium text-gray-900">History</h3>
+                                <p class="text-sm text-gray-500">World, Ancient, Modern</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <h3 class="text-sm font-medium text-gray-900 mb-3">Quick Actions</h3>
+                    <div class="space-y-2">
+                        <button class="w-full flex items-center justify-between p-3 text-sm bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-colors" onclick="generatePracticeTest()">
+                            <span>Create Practice Test</span>
+                            <i class="fas fa-file-alt text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-3 text-sm bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-colors" onclick="startStudyPlanCreation()">
+                            <span>Personalized Study Plan</span>
+                            <i class="fas fa-calendar text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-3 text-sm bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition-colors" onclick="showProgressReport()">
+                            <span>Progress Report</span>
+                            <i class="fas fa-chart-line text-gray-400"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="flex-1 main-area bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <!-- Chat Header -->
+                <div class="border-b border-gray-200 px-6 py-4 bg-gray-50">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-robot text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-semibold text-gray-900">Study Assistant</h2>
+                            <p class="text-sm text-gray-500">Personalized AI-powered exam preparation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-container overflow-y-auto p-6 space-y-4" id="chatMessages">
+                    <!-- Welcome Message -->
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0 flex items-center justify-center">
+                            <i class="fas fa-robot text-gray-600 text-sm"></i>
+                        </div>
+                        <div class="ml-3 max-w-3xl">
+                            <div class="message-ai p-4">
+                                <p class="text-gray-800"><strong>Welcome to ExamPrep AI!</strong> I'm powered by GROQ's advanced AI to help you excel in your studies.</p>
+                                <p class="mt-2 text-gray-700">I can assist you with:</p>
+                                <ul class="mt-2 text-gray-700 text-sm space-y-1">
+                                    <li><strong>Personalized Study Plans</strong> - Custom routines based on your schedule</li>
+                                    <li>Explaining complex concepts in simple terms</li>
+                                    <li>Solving practice problems step-by-step</li>
+                                    <li>Generating quizzes and tests</li>
+                                    <li>Providing subject-specific guidance</li>
+                                </ul>
+                                <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
+                                    <p class="text-sm text-blue-700"><strong>Try asking:</strong> "Create a study plan" or "Help me with calculus derivatives"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="border-t border-gray-200 p-4 bg-white">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex-1 relative">
+                            <textarea 
+                                id="messageInput"
+                                placeholder="Ask anything about your exam preparation..."
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                rows="1"
+                                oninput="autoResize(this)"
+                            ></textarea>
+                            <div class="absolute right-3 bottom-3 flex items-center space-x-2">
+                                
+                            </div>
+                        </div>
+                        <button 
+                            id="sendButton"
+                            class="w-12 h-12 bg-primary hover:bg-secondary rounded-lg flex items-center justify-center text-white transition-colors"
+                            onclick="sendMessage()"
+                        >
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-3 flex items-center justify-between text-xs text-gray-500">
+                        <div class="flex items-center space-x-4">
+                            <span>Press Enter to send</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <script>
+        // API Configuration
+        const GROQ_API_KEY = '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';
+        const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+        
+        let currentSubject = 'General';
+        let conversationHistory = [];
+        let isCreatingStudyPlan = false;
+        let studyPlanData = {
+            subject: '',
+            examDate: '',
+            dailyHours: '',
+            studyDays: [],
+            currentLevel: '',
+            targetScore: ''
+        };
+
+        function showApiStatus(message, isError = false) {
+            const status = document.getElementById('apiStatus');
+            status.textContent = message;
+            status.className = `api-status ${isError ? 'api-error' : 'api-connected'}`;
+            status.classList.remove('hidden');
+            
+            setTimeout(() => {
+                status.classList.add('hidden');
+            }, 3000);
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.subject-sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('hidden');
+        }
+        
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+        }
+        
+        async function callGroqAPI(messages) {
+            try {
+                const response = await fetch(GROQ_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${GROQ_API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: 'llama-3.1-8b-instant',
+                        messages: messages,
+                        temperature: 0.7,
+                        max_tokens: 2000
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                return data.choices[0].message.content;
+            } catch (error) {
+                console.error('GROQ API Error:', error);
+                throw error;
+            }
+        }
+        
+        function formatAIResponse(text) {
+            // Convert markdown code blocks to HTML
+            text = text.replace(/```(\w+)?\n([\s\S]*?)```/g, '<div class="code-block">$2</div>');
+            
+            // Convert mathematical formulas
+            text = text.replace(/\$\$([^$]+)\$\$/g, '<div class="math-formula">$1</div>');
+            text = text.replace(/\$([^$]+)\$/g, '<span class="math-inline">$1</span>');
+            
+            // Convert bullet points with asterisks to bold
+            text = text.replace(/\*\*(.*?)\*\*/g, '<br><br><strong>$1</strong>');
+            text = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+            
+            // Convert bullet points
+            text = text.replace(/^- (.+)$/gm, '<br><br><li>$1</li>');
+            text = text.replace(/(<li>.*<\/li>)/gs, '<ul class="space-y-1 mt-2">$1</ul>');
+            
+            return text;
+        }
+
+        function createStudyPlanForm() {
+            return `
+                <div class="study-plan-form">
+                    <h4 class="font-semibold text-lg mb-4">Create Your Personalized Study Plan</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Subject:</label>
+                            <select class="form-input" id="studySubject">
+                                <option value="">Select Subject</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Science">Science</option>
+                                <option value="Literature">Literature</option>
+                                <option value="History">History</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Exam Date:</label>
+                            <input type="date" class="form-input" id="examDate">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Daily Study Hours:</label>
+                            <select class="form-input" id="dailyHours">
+                                <option value="">Select Hours</option>
+                                <option value="1-2">1-2 hours</option>
+                                <option value="2-3">2-3 hours</option>
+                                <option value="3-4">3-4 hours</option>
+                                <option value="4+">4+ hours</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Current Grade/Standard:</label>
+                            <select class="form-input" id="currentLevel">
+                                <option value="">Select Grade</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Target Score/Grade:</label>
+                            <input type="text" class="form-input" id="targetScore" placeholder="e.g., A+, 90%, etc.">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Study Days:</label>
+                            <div class="flex flex-wrap gap-2">
+                                ${['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => `
+                                    <label class="flex items-center">
+                                        <input type="checkbox" value="${day}" class="mr-1 study-day">
+                                        ${day}
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="generateStudyPlan()" class="download-btn mt-4">
+                        <i class="fas fa-magic mr-2"></i> Generate Study Plan
+                    </button>
+                </div>
+            `;
+        }
+
+        function generateStudyPlan() {
+            const subject = document.getElementById('studySubject').value;
+            const examDate = document.getElementById('examDate').value;
+            const dailyHours = document.getElementById('dailyHours').value;
+            const currentLevel = document.getElementById('currentLevel').value;
+            const targetScore = document.getElementById('targetScore').value;
+            const studyDays = Array.from(document.querySelectorAll('.study-day:checked')).map(cb => cb.value);
+            
+            if (!subject || !examDate || !dailyHours || !currentLevel || !targetScore || studyDays.length === 0) {
+                showApiStatus('Please fill all fields', true);
+                return;
+            }
+            
+            studyPlanData = { subject, examDate, dailyHours, studyDays, currentLevel, targetScore };
+            
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex items-start';
+            typingDiv.innerHTML = `
+                <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0 flex items-center justify-center">
+                    <i class="fas fa-robot text-gray-600 text-sm"></i>
+                </div>
+                <div class="ml-3 max-w-3xl">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Create personalized study plan using GROQ API
+            const prompt = `
+                Create a detailed personalized study plan for ${subject} with the following parameters:
+                - Exam Date: ${examDate}
+                - Daily Study Time: ${dailyHours} hours
+                - Study Days: ${studyDays.join(', ')}
+                - Current Grade: ${currentLevel}
+                - Target Score: ${targetScore}
+                
+                Please provide:
+                1. A weekly study schedule with topics to cover each day
+                2. Recommended study techniques for this subject
+                3. Milestones and checkpoints
+                4. Recommended resources and materials
+                5. Tips for effective studying and time management
+                6. Practice exam schedule
+                
+                Make it comprehensive but easy to follow, with clear actionable steps. Use bold for emphasis but avoid asterisks.
+            `;
+            
+            callStudyPlanAPI(prompt);
+        }
+
+        async function callStudyPlanAPI(prompt) {
+            try {
+                const response = await callGroqAPI([
+                    {
+                        role: 'system',
+                        content: 'You are an expert educational consultant who creates highly effective, personalized study plans. Provide structured, actionable advice with clear timelines and recommendations. Use bold text for emphasis but avoid using asterisks (*) in your responses.'
+                    },
+                    {
+                        role: 'user',
+                        content: prompt
+                    }
+                ]);
+                
+                const chatMessages = document.getElementById('chatMessages');
+                const typingIndicator = chatMessages.querySelector('.typing-indicator').closest('.flex.items-start');
+                if (typingIndicator) chatMessages.removeChild(typingIndicator);
+                
+                const studyPlanDiv = document.createElement('div');
+                studyPlanDiv.className = 'flex items-start';
+                studyPlanDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-robot text-gray-600 text-sm"></i>
+                    </div>
+                    <div class="ml-3 max-w-3xl">
+                        <div class="message-ai p-4">
+                            <h4 class="font-semibold text-lg mb-3">Your Personalized Study Plan</h4>
+                            ${formatAIResponse(response)}
+                            <div class="mt-4">
+                                <button onclick="downloadStudyPlan()" class="download-btn">
+                                    <i class="fas fa-download mr-2"></i> Download as PDF
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                chatMessages.appendChild(studyPlanDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Store the generated plan for PDF download
+                window.generatedStudyPlan = response;
+                
+            } catch (error) {
+                console.error('Error generating study plan:', error);
+                showApiStatus('Failed to generate study plan', true);
+            }
+        }
+
+        function downloadStudyPlan() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add title
+            doc.setFontSize(20);
+            doc.setTextColor(79, 70, 229);
+            doc.text('Personalized Study Plan', 105, 20, { align: 'center' });
+            
+            // Add subject and details
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Subject: ${studyPlanData.subject}`, 20, 35);
+            doc.text(`Exam Date: ${studyPlanData.examDate}`, 20, 45);
+            doc.text(`Study Days: ${studyPlanData.studyDays.join(', ')}`, 20, 55);
+            doc.text(`Daily Hours: ${studyPlanData.dailyHours}`, 20, 65);
+            doc.text(`Current Grade: ${studyPlanData.currentLevel}`, 20, 75);
+            doc.text(`Target Score: ${studyPlanData.targetScore}`, 20, 85);
+            
+            // Remove markdown formatting for PDF
+            const cleanPlan = window.generatedStudyPlan
+                .replace(/\*\*(.*?)\*\*/g, '$1')
+                .replace(/\*(.*?)\*/g, '$1')
+                .replace(/```([\s\S]*?)```/g, '$1');
+            
+            // Add the generated study plan content
+            const lines = doc.splitTextToSize(cleanPlan, 170);
+            doc.text(lines, 20, 100);
+            
+            // Save the PDF
+            doc.save(`Study_Plan_${studyPlanData.subject}_${studyPlanData.examDate}.pdf`);
+            
+            showApiStatus('Study plan downloaded successfully!');
+        }
+
+        function startStudyPlanCreation() {
+            isCreatingStudyPlan = true;
+            const chatMessages = document.getElementById('chatMessages');
+            const studyPlanFormDiv = document.createElement('div');
+            studyPlanFormDiv.className = 'flex items-start';
+            studyPlanFormDiv.innerHTML = `
+                <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0 flex items-center justify-center">
+                    <i class="fas fa-robot text-gray-600 text-sm"></i>
+                </div>
+                <div class="ml-3 max-w-3xl">
+                    <div class="message-ai p-4">
+                        ${createStudyPlanForm()}
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(studyPlanFormDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Clear input
+            input.value = '';
+            input.style.height = 'auto';
+            
+            // Add user message to chat
+            const chatMessages = document.getElementById('chatMessages');
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'flex items-start justify-end';
+            userMessageDiv.innerHTML = `
+                <div class="max-w-3xl">
+                    <div class="message-user p-4">
+                        <pre>${message}</pre>
+                    </div>
+                </div>
+                <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center ml-3">
+                    <i class="fas fa-user text-white text-sm"></i>
+                </div>
+            `;
+            chatMessages.appendChild(userMessageDiv);
+            
+            // Check if user wants to create a study plan
+            if (message.toLowerCase().includes('study plan') || message.toLowerCase().includes('create plan')) {
+                startStudyPlanCreation();
+                return;
+            }
+            
+            // Add to conversation history
+            conversationHistory.push({
+                role: 'user',
+                content: message
+            });
+            
+            // Add typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex items-start';
+            typingDiv.innerHTML = `
+                <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0 flex items-center justify-center">
+                    <i class="fas fa-robot text-gray-600 text-sm"></i>
+                </div>
+                <div class="ml-3 max-w-3xl">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            try {
+                // Call GROQ API
+                const aiResponse = await callGroqAPI([
+                    {
+                        role: 'system',
+                        content: `You are ExamPrep AI, an expert tutor specializing in exam preparation. You help students understand complex concepts, solve problems, and prepare for exams. Be concise, clear, and educational. Use bold for emphasis but avoid using asterisks (*). Current subject: ${currentSubject}`
+                    },
+                    ...conversationHistory
+                ]);
+                
+                // Remove typing indicator
+                chatMessages.removeChild(typingDiv);
+                
+                // Add AI response
+                const aiMessageDiv = document.createElement('div');
+                aiMessageDiv.className = 'flex items-start';
+                aiMessageDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-robot text-gray-600 text-sm"></i>
+                    </div>
+                    <div class="ml-3 max-w-3xl">
+                        <div class="message-ai p-4">
+                            ${formatAIResponse(aiResponse)}
+                            <div class="mt-4 flex space-x-2">
+                                <button class="px-3 py-1 bg-primary text-white text-sm rounded-md hover:bg-secondary transition-colors" onclick="askFollowUp('Could you give me an example?')">
+                                    Example
+                                </button>
+                                <button class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors" onclick="startStudyPlanCreation()">
+                                    Create Study Plan
+                                </button>
+                                <button class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors" onclick="askFollowUp('Explain this more simply')">
+                                    Simplify
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                chatMessages.appendChild(aiMessageDiv);
+                
+                // Add to conversation history
+                conversationHistory.push({
+                    role: 'assistant',
+                    content: aiResponse
+                });
+                
+                // Show success status
+                showApiStatus('Response received from GROQ');
+                
+            } catch (error) {
+                // Remove typing indicator
+                chatMessages.removeChild(typingDiv);
+                
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'flex items-start';
+                errorDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-robot text-gray-600 text-sm"></i>
+                    </div>
+                    <div class="ml-3 max-w-3xl">
+                        <div class="message-ai p-4">
+                            <p class="text-red-600">Sorry, I'm having trouble connecting to the AI service. Please try again in a moment.</p>
+                            <p class="text-sm text-gray-600 mt-2">Error: ${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                chatMessages.appendChild(errorDiv);
+                
+                // Show error status
+                showApiStatus('Connection error - Please try again', true);
+            }
+            
+            // Scroll to bottom again
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function askFollowUp(question) {
+            document.getElementById('messageInput').value = question;
+            sendMessage();
+        }
+        
+        function generatePracticeTest() {
+            const message = `Create a practice test for ${currentSubject} with 5 questions covering key concepts.`;
+            document.getElementById('messageInput').value = message;
+            sendMessage();
+        }
+        
+        function createStudySchedule() {
+            const message = `Create a 7-day study schedule for ${currentSubject} to prepare for my exam.`;
+            document.getElementById('messageInput').value = message;
+            sendMessage();
+        }
+        
+        function showProgressReport() {
+            const message = `Generate a progress report for my ${currentSubject} studies and suggest areas for improvement.`;
+            document.getElementById('messageInput').value = message;
+            sendMessage();
+        }
+        
+        function toggleTheme() {
+            document.body.classList.toggle('bg-gray-900');
+            document.body.classList.toggle('text-white');
+            
+            // var mainArea = document.querySelector('.main-area');
+            // sidebar.classList.toggle('bg-gray-800');
+            // mainArea.classList.toggle('bg-gray-800');
+            // mainArea.classList.toggle('text-white');
+            // sidebar.classList.toggle('text-white');
+            // document.body.style.color = "white";
+            
+        }
+        
+        // Handle Enter key for sending message
+        document.getElementById('messageInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // Add click handlers for subject cards
+        document.querySelectorAll('.subject-card').forEach(card => {
+            card.addEventListener('click', function() {
+                currentSubject = this.getAttribute('data-subject');
+                const message = `I want to study ${currentSubject}. Can you help me get started with the key concepts?`;
+                document.getElementById('messageInput').value = message;
+                document.getElementById('messageInput').focus();
+                showApiStatus(`Switched to ${currentSubject} mode`);
+            });
+        });
+        
+        // Initialize chat scroll position
+        window.addEventListener('load', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            showApiStatus('GROQ API Connected');
+        });
+    </script>
+</body>
 </html>
