@@ -4,9 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=
     , initial-scale=1.0">
-    <title>Document</title>
+    <title>AI Chat Interface</title>
+    <style>
+        :root {
+            --primary: #0078d4;
+            --primary-hover: #005fa3;
+            --bg: #f4f6fa;
+            --container-bg: #fff;
+            --text: #222;
+            --output-bg: #f5f5f5;
+        }
+        body {
+            background: var(--bg);
+            margin: 0;
+            min-height: 100vh;
+            transition: background 0.2s;
+            /* Remove default scrollbars for cleaner look */
+            overflow: hidden;
+        }
+        .ai-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            background: var(--container-bg);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+        }
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 32px 32px 0 32px;
+            margin-bottom: 0;
+        }
+        .ai-title {
+            font-size: 1.7em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .ai-output {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+            background: var(--output-bg);
+            border-radius: 8px;
+            padding: 18px 32px;
+            margin: 18px 32px 0 32px;
+            color: var(--text);
+            font-size: 1.08em;
+            white-space: pre-line;
+            border: 1px solid #e0e0e0;
+        }
+        .ai-input-row {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            background: var(--container-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px 0;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+            border-top: 1px solid #e0e0e0;
+        }
+        .ai-input-wrapper {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+        }
+        .ai-input {
+            width: 100%;
+            padding: 10px 44px 10px 10px;
+            border-radius: 6px;
+            border: 1px solid #bbb;
+            font-size: 1em;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.2s, color 0.2s;
+        }
+        .ai-input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .ai-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.3em;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .ai-btn:hover {
+            background: var(--primary-hover);
+        }
+        @media (max-width: 600px) {
+            .ai-header, .ai-output, .ai-input-row {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="ai-container">
+        <div class="ai-header">
+            <div class="ai-title">AN0N CRACKER</div>
+        </div>
+        <div id="ai-output" class="ai-output">Hello! How can I assist you today?</div>
+    </div>
+    <div class="ai-input-row">
+        <div class="ai-input-wrapper">
+            <input id="ai-input" class="ai-input" type="text" placeholder="Type your question..." />
+            <button id="ai-btn" class="ai-btn" aria-label="Send">
+                <!-- Send arrow SVG -->
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 15L15 9L3 3V7.5L10.5 9L3 10.5V15Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script>
+        const input = document.getElementById('ai-input');
+        const btn = document.getElementById('ai-btn');
+        const output = document.getElementById('ai-output');
+
+        btn.onclick = () => {
+            const userText = input.value.trim();
+            if (userText) {
+                output.textContent = `You asked: ${userText}\n(Feature coming soon)`;
+                input.value = '';
+            }
+        };
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter') btn.click();
+        });
+    </script>
 </body>
 </html>
