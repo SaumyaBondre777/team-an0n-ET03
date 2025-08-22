@@ -43,78 +43,209 @@
             ></div>
           </div>
         </header>
+        
         <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <h2 class="text-white tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">Exam AI Chatbot</h2>
-            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
-              Recommended questions to get started:
-            </p>
-            <div class="flex flex-wrap justify-center gap-3 pb-6" id="suggestions">
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                What are the most important topics for my math exam?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                Can you give me tips for time management during exams?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                How do I prepare for multiple choice questions?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                What are some common mistakes to avoid in science exams?
-              </button>
-              <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition">
-                Can you help me create a study plan?
-              </button>
+          <div class="layout-content-container flex flex-col max-w-[700px] flex-1 w-full">
+            <!-- Welcome section - hidden after first message -->
+            <div id="welcome-section" class="transition-all duration-300 ease-in-out">
+              <h2 class="text-white tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">Exam AI Chatbot</h2>
+              <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
+                Recommended questions to get started:
+              </p>
+              <div class="flex flex-wrap justify-center gap-3 pb-6" id="suggestions">
+                <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition suggestion-btn">
+                  What are the most important topics for my math exam?
+                </button>
+                <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition suggestion-btn">
+                  Can you give me tips for time management during exams?
+                </button>
+                <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition suggestion-btn">
+                  How do I prepare for multiple choice questions?
+                </button>
+                <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition suggestion-btn">
+                  What are some common mistakes to avoid in science exams?
+                </button>
+                <button class="bg-[#2d372a] text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-[#3a4a36] transition suggestion-btn">
+                  Can you help me create a study plan?
+                </button>
+              </div>
             </div>
-            <div class="flex w-full max-w-[700px] flex-wrap items-end gap-4 px-4 py-3 justify-center mx-auto">
-              <label class="flex flex-col min-w-40 flex-1 relative">
-                <input
-                  id="prompt-input"
-                  placeholder="Type your question here..."
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#2d372a] focus:border-none h-14 placeholder:text-[#a5b6a0] p-4 text-base font-normal leading-normal pr-12"
-                  value=""
-                />
-                <button
-                  type="button"
-                  id="send-btn"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center bg-[#54d22d] hover:bg-[#6be942] transition rounded-full w-9 h-9"
-                  aria-label="Send"
-                >
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style="display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 3V19M11 3L5 9M11 3L17 9" stroke="#131712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-              </label>
+            
+            <!-- Chat area - expands to full height when welcome section is hidden -->
+            <div id="chat-area" class="flex flex-col gap-3 px-4 py-4 overflow-y-auto flex-1 bg-[#181d16] rounded-lg mb-4 border border-[#2d372a] transition-all duration-300" style="min-height: 200px; max-height: 400px;">
+              <!-- Chat bubbles will be appended here -->
             </div>
+          </div>
+        </div>
+        
+        <!-- Input bar fixed at bottom -->
+        <div class="w-full flex justify-center bg-[#131712] pb-6 pt-2 px-4 border-t border-[#2d372a]">
+          <div class="flex w-full max-w-[700px] flex-wrap items-end gap-4 justify-center mx-auto">
+            <label class="flex flex-col min-w-40 flex-1 relative">
+              <input
+                id="prompt-input"
+                placeholder="Type your question here..."
+                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#2d372a] focus:border-none h-14 placeholder:text-[#a5b6a0] p-4 text-base font-normal leading-normal pr-12"
+                value=""
+                autocomplete="off"
+              />
+              <button
+                type="button"
+                id="send-btn"
+                class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center bg-[#54d22d] hover:bg-[#6be942] transition rounded-full w-9 h-9 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Send"
+              >
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style="display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 3V19M11 3L5 9M11 3L17 9" stroke="#131712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </label>
           </div>
         </div>
       </div>
     </div>
+    
     <script>
-      // Make send button usable
+      // Chat memory
+      let chatHistory = [];
+      let isFirstMessage = true;
+      let isLoading = false;
+
+      // Helper to render chat bubbles
+      function renderChat() {
+        const chatArea = document.getElementById('chat-area');
+        chatArea.innerHTML = '';
+        
+        chatHistory.forEach(msg => {
+          const bubble = document.createElement('div');
+          bubble.className =
+            (msg.role === 'user'
+              ? 'self-end bg-[#54d22d] text-[#131712] rounded-br-none'
+              : 'self-start bg-[#232a1e] text-white rounded-bl-none') +
+            ' max-w-[80%] px-4 py-3 rounded-2xl shadow text-base whitespace-pre-wrap break-words';
+          bubble.textContent = msg.content;
+          chatArea.appendChild(bubble);
+        });
+        
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }
+
+      // Hide welcome section and expand chat area
+      function hideWelcomeSection() {
+        const welcomeSection = document.getElementById('welcome-section');
+        const chatArea = document.getElementById('chat-area');
+        
+        welcomeSection.style.opacity = '0';
+        welcomeSection.style.transform = 'translateY(-20px)';
+        
+        setTimeout(() => {
+          welcomeSection.style.display = 'none';
+          chatArea.style.maxHeight = '60vh';
+          chatArea.style.minHeight = '60vh';
+        }, 300);
+      }
+
+      // Send message to backend and update chat
+      async function sendMessage(question) {
+        if (isLoading || !question.trim()) return;
+        
+        isLoading = true;
+        document.getElementById('send-btn').disabled = true;
+        
+        // Hide welcome section on first message
+        if (isFirstMessage) {
+          hideWelcomeSection();
+          isFirstMessage = false;
+        }
+        
+        // Add user message
+        chatHistory.push({ role: 'user', content: question });
+        renderChat();
+        
+        // Show loading indicator
+        const loadingMessage = { role: 'assistant', content: 'Thinking...' };
+        chatHistory.push(loadingMessage);
+        renderChat();
+        
+        try {
+          // Prepare request payload
+          const payload = {
+            message: question,
+            history: chatHistory.filter(m => m.content !== 'Thinking...')
+          };
+          
+          // Send POST request to Express server
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          
+          // Remove loading message and add actual response
+          chatHistory.pop();
+          chatHistory.push({ 
+            role: 'assistant', 
+            content: data.response || data.answer || 'Sorry, I couldn\'t generate a response.' 
+          });
+          
+        } catch (error) {
+          console.error('Error:', error);
+          
+          // Remove loading message and add error response
+          chatHistory.pop();
+          chatHistory.push({ 
+            role: 'assistant', 
+            content: 'Sorry, I\'m having trouble connecting to the server. Please try again.' 
+          });
+        } finally {
+          renderChat();
+          isLoading = false;
+          document.getElementById('send-btn').disabled = false;
+        }
+      }
+
+      // Send button click handler
       document.getElementById('send-btn').onclick = function() {
         const input = document.getElementById('prompt-input');
         const question = input.value.trim();
-        if (question) {
-          alert('You asked: ' + question); // Replace with your chat logic
+        if (question && !isLoading) {
+          sendMessage(question);
           input.value = '';
         }
       };
 
-      // Fill input when clicking recommended questions
+      // Suggestion buttons click handler
       document.getElementById('suggestions').addEventListener('click', function(e) {
-        if (e.target.tagName === 'BUTTON') {
-          document.getElementById('prompt-input').value = e.target.textContent;
+        if (e.target.classList.contains('suggestion-btn') && !isLoading) {
+          const question = e.target.textContent.trim();
+          sendMessage(question);
         }
       });
 
-      // Optional: Enter key submits
+      // Enter key handler
       document.getElementById('prompt-input').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
+          e.preventDefault();
           document.getElementById('send-btn').click();
         }
       });
+
+      // Auto-focus input on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('prompt-input').focus();
+      });
+
+      // Initial render
+      renderChat();
     </script>
   </body>
-</html>
 </html>
